@@ -41,8 +41,8 @@
                     <td th:text="${libro.nombre}"></td>
                     <td th:text="${libro.autor}"></td>
                     <td th:text="${libro.editorial.nombre}"></td>
-                    <td  sec:authorize="hasRole('ADMIM')"><a class="btn btn-success btn-sm" th:href="@{/libro/edit/{id}(id=${libro.id})}">Editar</a></td>
-                    <td  sec:authorize="hasRole('ADMIM')"><a class="btn  btn-danger  btn-sm " th:href="@{/libro/delete(id=${libro.id})}">Eliminar</a></td>
+                    <td  sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success btn-sm" th:href="@{/libro/edit/{id}(id=${libro.id})}">Editar</a></td>
+                    <td  sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn  btn-danger  btn-sm " th:href="@{/libro/delete(id=${libro.id})}">Eliminar</a></td>
 
                 </tr>
                 </tbody>
