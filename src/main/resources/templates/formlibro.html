@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/layout :: head}">
+
+</head>
+<body>
+
+<nav th:replace="~{layouts/layout :: nav}"></nav>
+
+
+<div class="container">
+
+    <div class="row justify-content-center text-center">
+
+        <div class="col-8">
+
+            <form method="POST" th:action="@{/libro/save}" th:object="${libro} ">
+
+                <input type="hidden" class="form-control" th:field="*{id}">
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" aria-describedby="nombre" th:field="*{nombre}">
+                    <small style="color: red;"
+                           th:if="${#fields.hasErrors('nombre')}"
+                           th:errors="*{nombre}"> </small>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="autor" class="form-label">Autor</label>
+                    <input type="text" class="form-control" id="autor" aria-describedby="autor" th:field="*{autor}">
+                    <small style="color: red;"
+                           th:if="${#fields.hasErrors('autor')}"
+                           th:errors="*{autor}"> </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="editorial" class="form-label">Editorial</label>
+                    <select name="editorial_id" class="form-select">
+                        <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" id="editorial"  th:text="${editorial.id + ': '+editorial.nombre}"></option>
+
+                    </select>
+                    <small style="color: red;"
+                           th:if="${#fields.hasErrors('editorial')}"
+                           th:errors="*{editorial}"> </small>
+                </div>
+
+                <button type="submit" class="btn-success btn">Guardar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

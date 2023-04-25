@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layouts/layout :: head}">
+
+</head>
+<body>
+
+<nav th:replace="~{layouts/layout ::nav}"></nav>
+<div class="alert alert-success" role="alert" th:if="${registro}">
+    <p th:text="${registro}"></p>
+</div>
+
+<div class="alert alert-success" role="alert" th:if="${ok}">
+    <p th:text="${ok}"></p>
+</div>
+
+<div class="alert alert-danger" role="alert" th:if="${fail}">
+    <p th:text="${fail}"></p>
+</div>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-8">
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Editorial</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="libro : ${libros}">
+                    <td th:text="${libro.id}"></td>
+                    <td th:text="${libro.nombre}"></td>
+                    <td th:text="${libro.autor}"></td>
+                    <td th:text="${libro.editorial.nombre}"></td>
+                    <td  sec:authorize="hasRole('ADMIM')"><a class="btn btn-success btn-sm" th:href="@{/libro/edit/{id}(id=${libro.id})}">Editar</a></td>
+                    <td  sec:authorize="hasRole('ADMIM')"><a class="btn  btn-danger  btn-sm " th:href="@{/libro/delete(id=${libro.id})}">Eliminar</a></td>
+
+                </tr>
+                </tbody>
+
+            </table>
+            <div  class="text-end">
+                <a sec:authorize="hasRole('ADMIM')"class="btn btn-outline-dark btn-sm" th:href="@{/libro/form}">Agregar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

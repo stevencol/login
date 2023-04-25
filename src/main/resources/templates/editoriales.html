@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/layout :: head}">
+
+</head>
+<body>
+
+
+<nav th:replace="~{layouts/layout :: nav} "></nav>
+
+<h1 th:if="${error!=''}" th:text="${error}"></h1>
+<div class="container">
+
+    <div class="row justify-content-center text-center">
+
+
+        <div class="col-4">
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="editorial : ${editoriales}">
+                    <td th:text="${editorial.id}"></td>
+                    <td th:text="${editorial.nombre}"></td>
+                    <td><a class="btn btn-success btn-sm" th:href="@{/editorial/edit(id=${editorial.id})}">Editar</a>
+                    </td>
+                    <td><a class="btn  btn-danger  btn-sm "
+                           th:href="@{/editorial/delete(id=${editorial.id})}">Eliminar</a></td>
+                    <th th:text="${editorial.libros}"></th>
+
+                </tr>
+                </tbody>
+
+            </table>
+            <div class="text-end">
+                <a class="btn btn-outline-dark btn-sm" th:href="@{/editorial/form}">Agregar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+</html>

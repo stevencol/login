@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/layout :: head}">
+
+</head>
+<body>
+
+<div class="container">
+
+    <nav th:replace="~{layouts/layout :: nav}"></nav>
+    <div class="row justify-content-center text-center">
+
+        <div class="col-8">
+
+            <form method="POST" th:action="@{/editorial/save}" th:object="${editorial} ">
+
+                <input type="hidden" class="form-control" th:field="*{id}">
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" aria-describedby="nombre" th:field="*{nombre}">
+                    <small style="color: red;"
+                           th:if="${#fields.hasErrors('nombre')}"
+                           th:errors="*{nombre}"> </small>
+                </div>
+
+
+                <button type="submit" class="btn-success btn">Guardar</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
